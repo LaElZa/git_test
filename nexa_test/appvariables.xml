@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppVariables version="2.0">
+  <Datasets/>
+  <Variables/>
+  <DataObjects>
+    <DataObject id="g_do_info_files"/>
+  </DataObjects>
+</AppVariables>

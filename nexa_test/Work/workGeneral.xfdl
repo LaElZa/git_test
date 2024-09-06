@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="workGeneral" width="800" height="600" titletext="General Information">
+    <Layouts>
+      <Layout height="600" width="800">
+        <Button id="btnSearch" taborder="0" text="Search" top="10" width="75" height="25" cssclass="btn_WF_search01" right="220" onclick="btnSearch_onclick"/>
+        <Button id="btnExportCSV" taborder="3" text="Export CSV" top="10" width="95" height="25" cssclass="btn_WF_save01" right="120" onclick="btnExportCSV_onclick"/>
+        <Button id="btnExportExcel" taborder="4" text="Export Excel" top="10" width="105" height="25" cssclass="btn_WF_excel01" right="10" onclick="btnExportExcel_onclick"/>
+        <Grid id="grdGeneral" taborder="1" left="10" top="btnSearch:10" right="10" bottom="10" binddataset="dsGeneral" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="150" band="left"/>
+                <Column size="80" band="left"/>
+                <Column size="80"/>
+                <Column size="120" band="right"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="filename"/>
+                <Cell col="1" text="filetype"/>
+                <Cell col="2" text="filepath"/>
+                <Cell col="3" text="date"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:filename"/>
+                <Cell col="1" text="bind:filetype" textAlign="center"/>
+                <Cell col="2" text="bind:filepath"/>
+                <Cell col="3" text="bind:date" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stTitle" taborder="2" text="General Information" left="10" top="5" height="35" cssclass="sta_WF_title01" right="btnSearch:10"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsGeneral" binddataobject="g_do_info_files" dataobjectpath="$.general file information[*]">
+        <ColumnInfo>
+          <Column id="filename" type="STRING" size="256" datapath="@.filename"/>
+          <Column id="filetype" type="STRING" size="256" datapath="@.filetype"/>
+          <Column id="filepath" type="STRING" size="256" datapath="@.filepath"/>
+          <Column id="date" type="STRING" size="256" datapath="@.lastmodified"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::libComm.xjs";
+
+/*******************************************************************************************************************************
+	 nexacrostudio.request
+	 
+	 syntax 		: nexacrostudio.request( requestType, dataobjectID = null); 
+	 description	: request the project information being developed in nexacrostudio 
+					  and receive it as the data property value of Dataobject.
+	 return 		: Information requested according to requestType is returned in the form of Json format string.	 
+	 ___________________________________________________________________________________________________________________________
+	 requestType	: 
+		1) requesttype.all									11) requesttype.services
+		2) requesttype.general								12) requesttype.protocoladaptors
+		3) requesttype.environment							13) requesttype.deviceadaptors
+		4) requesttype.screeninfo							14) requesttype.applicationvariables
+		5) requesttype.env_variables						15) requesttype.app_datasets
+		6) requesttype.env_cookies							16) requesttype.app_variables
+		7) requesttype.env_httpheader						17) requesttype.app_dataobjects
+		8) requesttype.typedefinition						19) requesttype.applications
+		9) requesttype.modules								20) requesttype.forms
+		10) requesttype.objects
+		
+	 dataobjectID : Set the ID of the DataObject to which the requested information will be reflected according to requestType.
+	 
+********************************************************************************************************************************/
+
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objDataObj = nexacro.getApplication().all["g_do_info_files"];
+	
+	if (objDataObj == null)
+		return;
+			
+	// request file information of nexacrostudio project
+	nexacrostudio.request(requesttype.general, objDataObj.id);
+	this.dsGeneral.loadFromDataObject();	
+};
+
+this.btnExportCSV_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnExportCSV("GeneralInformation.csv", this.grdGeneral);
+};
+
+this.btnExportExcel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnExportExcel("GeneralInformation.xls", this.grdGeneral);
+};
+]]></Script>
+  </Form>
+</FDL>

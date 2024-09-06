@@ -1,0 +1,1 @@
+<jsp:redirect url="nexa_test/index.html" />

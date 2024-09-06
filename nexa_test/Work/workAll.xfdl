@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="workAll" width="800" height="600" titletext="All Information">
+    <Layouts>
+      <Layout height="600" width="800">
+        <Button id="btnSearch" taborder="0" text="Search" top="10" width="75" height="25" cssclass="btn_WF_search01" right="10" onclick="btnSearch_onclick"/>
+        <TextArea id="txAll" taborder="1" left="10" top="btnSearch:10" right="10" bottom="10"/>
+        <Static id="stTitle" taborder="2" text="All Information" left="10" top="5" height="35" cssclass="sta_WF_title01" right="btnSearch:10"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsAll"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/*******************************************************************************************************************************
+	 nexacrostudio.request
+	 
+	 syntax 		: nexacrostudio.request( requestType, dataobjectID = null); 
+	 description	: request the project information being developed in nexacrostudio 
+					  and receive it as the data property value of Dataobject.
+	 return 		: Information requested according to requestType is returned in the form of Json format string.	 
+	 ___________________________________________________________________________________________________________________________
+	 requestType	: 
+		1) requesttype.all									11) requesttype.services
+		2) requesttype.general								12) requesttype.protocoladaptors
+		3) requesttype.environment							13) requesttype.deviceadaptors
+		4) requesttype.screeninfo							14) requesttype.applicationvariables
+		5) requesttype.env_variables						15) requesttype.app_datasets
+		6) requesttype.env_cookies							16) requesttype.app_variables
+		7) requesttype.env_httpheader						17) requesttype.app_dataobjects
+		8) requesttype.typedefinition						19) requesttype.applications
+		9) requesttype.modules								20) requesttype.forms
+		10) requesttype.objects
+		
+	 dataobjectID : Set the ID of the DataObject to which the requested information will be reflected according to requestType.
+	 
+********************************************************************************************************************************/
+
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// request all information of nexacrostudio project
+	var sRtn = nexacrostudio.request(requesttype.all);
+	
+	this.txAll.set_value(sRtn);
+};
+]]></Script>
+  </Form>
+</FDL>

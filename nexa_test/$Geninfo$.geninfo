@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <GenInfo version="1.1">
+    <Rule>
+      <ENV rule_version="1.05"/>
+      <ADL rule_version="1.14"/>
+      <FDL rule_version="1.04"/>
+      <XCSS rule_version="1.04"/>
+      <Script rule_version="1.02"/>
+    </Rule>
+    <Info project="C:\EDU_PJT\workspace\TEST_PJ\nexa_test\" generated="C:\EDU_PJT\workspace\TEST_PJ\src\main\webapp\nexa_test\">
+      <File url="typedefinition.xml" checksum="20240905163350" errormsg=""/>
+      <File url="appvariables.xml" checksum="20240905163350" errormsg=""/>
+      <File url="environment.xml" checksum="20240905163350" errormsg=""/>
+      <File url="_resource_\_theme_\blue\theme.xcss" checksum="20240905163350" errormsg=""/>
+      <File url="Application_Desktop.xadl" checksum="20240905163350" errormsg=""/>
+      <File url="FrameBase\frmMain.xfdl" checksum="20240905163350" errormsg=""/>
+      <File url="Work\workAll.xfdl" checksum="20240905163350" errormsg=""/>
+      <File url="Work\workGeneral.xfdl" checksum="20240905163350" errormsg=""/>
+      <File url="Work\workFrames.xfdl" checksum="20240905163350" errormsg=""/>
+      <File url="Work\workForms.xfdl" checksum="20240905163350" errormsg=""/>
+      <File url="Work\workComponents.xfdl" checksum="20240905163350" errormsg=""/>
+      <File url="Work\workFormPrint.xfdl" checksum="20240905163350" errormsg=""/>
+      <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\framework\Framework.json" checksum="20230829134032" errormsg=""/>
+      <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\resources\Resource.json" checksum="20230829134032" errormsg=""/>
+      <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\CompBase.json" checksum="20230829134030" errormsg=""/>
+      <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\ComComp.json" checksum="20230829134030" errormsg=""/>
+      <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\Grid.json" checksum="20230829134030" errormsg=""/>
+      <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\ListView.json" checksum="20230829134032" errormsg=""/>
+      <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\DeviceAPI.json" checksum="20230829134030" errormsg=""/>
+    </Info>
+  </GenInfo>
+</root>

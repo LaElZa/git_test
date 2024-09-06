@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="External_Form" width="800" height="600" titletext="Tutorial Form">
+    <Layouts>
+      <Layout height="600" mobileorientation="landscape" width="800" stepcount="0" screenid="Desktop_screen">
+        <Tab id="tabWork" taborder="0" tabindex="4" left="10" top="10" right="10" bottom="10">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="All" url="Work::workAll.xfdl"/>
+            <Tabpage id="Tabpage2" text="General" url="Work::workGeneral.xfdl"/>
+            <Tabpage id="Tabpage3" text="Frames" url="Work::workFrames.xfdl"/>
+            <Tabpage id="Tabpage4" text="Forms" url="Work::workForms.xfdl"/>
+            <Tabpage id="Tabpage5" text="Components" url="Work::workComponents.xfdl"/>
+            <Tabpage id="Tabpage6" text="Form Print" url="Work::workFormPrint.xfdl"/>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+]]></Script>
+    <Objects>
+      <FileDialog id="FileDialog00" onclose="FileDialog00_onclose"/>
+    </Objects>
+  </Form>
+</FDL>

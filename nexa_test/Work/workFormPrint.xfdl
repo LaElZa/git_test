@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="workFormPrint" width="800" height="600" titletext="New Form" onload="workFormPrint_onload">
+    <Layouts>
+      <Layout height="600" width="800">
+        <Button id="btnPrint" taborder="2" text="Print" top="45" width="65" height="25" cssclass="btn_WF_list01" right="10" onclick="btnExportExcel_onclick"/>
+        <Grid id="grdFormPreview" taborder="0" left="10" top="btnPrint:10" binddataset="dsForm" treeusecheckbox="false" cellsizingtype="col" autofittype="col" right="10" bottom="10" onsize="grdFormPreview_onsize" useselcolor="false" readonly="true">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="145"/>
+                <Column size="190"/>
+                <Column size="145"/>
+                <Column size="290"/>
+              </Columns>
+              <Rows>
+                <Row size="50"/>
+                <Row size="50"/>
+                <Row size="50"/>
+                <Row size="415"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="Prefix ID" textAlign="center" cssclass="cellTitle" cursor="default"/>
+                <Cell col="1" text="bind:prefix" cursor="default"/>
+                <Cell col="2" text="File Path" textAlign="center" cssclass="cellTitle" cursor="default"/>
+                <Cell col="3" text="bind:path" wordWrap="char" cursor="default"/>
+                <Cell row="1" text="Form ID" textAlign="center" cssclass="cellTitle" cursor="default"/>
+                <Cell row="1" col="1" text="bind:id" cursor="default"/>
+                <Cell row="1" col="2" text="Form Title" textAlign="center" cssclass="cellTitle" cursor="default"/>
+                <Cell row="1" col="3" text="bind:title" cursor="default"/>
+                <Cell row="2" colspan="4" text="Form Design" textAlign="center" cssclass="cellTitle" cursor="default"/>
+                <Cell row="3" colspan="4" text="bind:image" displaytype="imagecontrol" imagestretch="fixaspectratio" cursor="default"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stTitle" taborder="1" text="Form Print" left="10" top="5" height="35" cssclass="sta_WF_title01" right="205"/>
+        <Static id="stTitle00" taborder="3" text="Form ID" left="10" top="45" height="25" cssclass="sta_cm_text12L" width="55"/>
+        <Combo id="cmbFormID" taborder="4" left="71" top="45" height="25" onitemchanged="cmbFormID_onitemchanged" innerdataset="dsForms" codecolumn="code" datacolumn="value" right="btnPrint:20"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsForms">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsForm">
+        <ColumnInfo>
+          <Column id="prefix" type="STRING" size="256"/>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="title" type="STRING" size="256"/>
+          <Column id="path" type="STRING" size="256"/>
+          <Column id="image" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::libComm.xjs";
+
+this.objJSON;
+
+/*******************************************************************************************************************************
+	 nexacrostudio.request
+	 
+	 syntax 		: nexacrostudio.request( requestType, dataobjectID = null ); 
+	 description	: request the project information being developed in nexacrostudio 
+					  and receive it as the data property value of Dataobject.
+	 return 		: Information requested according to requestType is returned in the form of Json format string.	 
+	 ___________________________________________________________________________________________________________________________
+	 requestType	: 
+		1) requesttype.all									11) requesttype.services
+		2) requesttype.general								12) requesttype.protocoladaptors
+		3) requesttype.environment							13) requesttype.deviceadaptors
+		4) requesttype.screeninfo							14) requesttype.applicationvariables
+		5) requesttype.env_variables						15) requesttype.app_datasets
+		6) requesttype.env_cookies							16) requesttype.app_variables
+		7) requesttype.env_httpheader						17) requesttype.app_dataobjects
+		8) requesttype.typedefinition						19) requesttype.applications
+		9) requesttype.modules								20) requesttype.forms
+		10) requesttype.objects
+		
+	 dataobjectID : Set the ID of the DataObject to which the requested information will be reflected according to requestType.
+	 
+********************************************************************************************************************************/
+/*******************************************************************************************************************************
+	 nexacrostudio.getFormImage
+	 
+	 syntax 		: nexacrostudio.getFormImage( strFormUrl ); 
+	 description	: This is a method to request the form image data of the project being developed in nexacrostudio.					  
+	 return 		: Returns the image data of the form in string type.	 
+	 ___________________________________________________________________________________________________________________________	 
+	 strFormUrl : Form prefixurl to get image data.
+	 
+********************************************************************************************************************************/
+this.workFormPrint_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo) 
+{
+	this.fnGridOnSize(this.grdFormPreview.getOffsetWidth(), this.grdFormPreview.getOffsetHeight());
+	
+	var sRtn = nexacrostudio.request(requesttype.forms);
+	if (sRtn)
+	{	
+		this.objJSON = JSON.parse(sRtn);	
+		this.fnMakeFormsData();
+	}
+};
+
+this.cmbFormID_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.fnMakeSelectFormData(e.postindex);
+};
+
+this.fnMakeFormsData = function()
+{
+	var arrForms = this.objJSON.forms;
+	var objForm;
+	
+	var nRow;
+	var sPrefix;
+	var sFormId;
+	var sFormTitle;
+	
+	this.dsForms.clearData();
+	this.dsForms.set_enableevent(false);
+	
+	nRow = this.dsForms.addRow();
+	this.dsForms.setColumn(nRow, "code", "-1");
+	this.dsForms.setColumn(nRow, "value", "Select Form ID");
+		
+	for (var i = 0; i < arrForms.length; i++)
+	{
+		objForm = arrForms[i];
+		sPrefix = objForm.prefixurl;
+		sFormTitle = this.gfnFindValue(objForm.properties, "name", "titletext", "value");
+		
+		nRow = this.dsForms.addRow();
+		this.dsForms.setColumn(nRow, "code", sPrefix);
+		this.dsForms.setColumn(nRow, "value", sPrefix + " - " + sFormTitle);
+	}
+	
+	this.dsForms.set_enableevent(true);
+	
+	this.cmbFormID.set_index(0);
+}
+
+this.fnMakeSelectFormData = function(nIdx)
+{
+	if (nIdx == 0)
+	{
+		this.dsForm.clearData();
+		this.dsForm.addRow();
+	}
+	else
+	{
+		var objForm = this.objJSON.forms[nIdx-1];
+				
+		var sPrefixUrl = objForm.prefixurl;
+		var sPrefixID = sPrefixUrl.split("::")[0];
+		var sFormId = objForm.id;
+		var sFormTitle = this.gfnFindValue(objForm.properties, "name", "titletext", "value");;
+		var sFormPath = objForm.filepath;
+		
+		// get image data of form
+		var sImage = nexacrostudio.getFormImage(sPrefixUrl);
+		
+		this.dsForm.clearData();
+		this.dsForm.set_enableevent(false);
+		
+		nRow = this.dsForm.addRow();
+		this.dsForm.setColumn(nRow, "prefix", sPrefixID);
+		this.dsForm.setColumn(nRow, "id", sFormId);
+		this.dsForm.setColumn(nRow, "title", sFormTitle);
+		this.dsForm.setColumn(nRow, "path", sFormPath);
+		this.dsForm.setColumn(nRow, "image", sImage);
+		
+		this.dsForm.set_enableevent(true);
+	}
+}
+
+this.btnExportExcel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	system.print(this.grdFormPreview, false, "middle", "center", "true", "landscape");
+};
+
+this.grdFormPreview_onsize = function(obj:nexacro.Grid,e:nexacro.SizeEventInfo)
+{
+	this.fnGridOnSize(e.cx, e.cy);
+};
+
+this.fnGridOnSize = function(nX, nY)
+{
+	var nHeight = nY - 153;
+	this.grdFormPreview.setFormatRowProperty(3, "size", nHeight);
+}]]></Script>
+  </Form>
+</FDL>

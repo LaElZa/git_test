@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="workFrames" width="800" height="600" titletext="Frames Information">
+    <Layouts>
+      <Layout height="600" width="800">
+        <Button id="btnSearch" taborder="0" text="Search" top="10" width="75" height="25" cssclass="btn_WF_search01" right="220" onclick="btnSearch_onclick"/>
+        <Button id="btnExportCSV" taborder="3" text="Export CSV" top="10" width="95" height="25" cssclass="btn_WF_save01" right="120" onclick="btnExportCSV_onclick"/>
+        <Button id="btnExportExcel" taborder="4" text="Export Excel" top="10" width="105" height="25" cssclass="btn_WF_excel01" right="10" onclick="btnExportExcel_onclick"/>
+        <Grid id="grdFrames" taborder="1" left="10" top="btnSearch:10" right="10" bottom="10" binddataset="dsFrames" autofittype="col" treeusecheckbox="false" cellsizingtype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="300"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="frames"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:caption" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:level" treestate="bind:status"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stTitle" taborder="2" text="Frames Information" left="10" top="5" height="35" cssclass="sta_WF_title01" right="btnSearch:10"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::libComm.xjs";
+
+/*******************************************************************************************************************************
+	 nexacrostudio.request
+	 
+	 syntax 		: nexacrostudio.request( requestType, dataobjectID = null); 
+	 description	: request the project information being developed in nexacrostudio 
+					  and receive it as the data property value of Dataobject.
+	 return 		: Information requested according to requestType is returned in the form of Json format string.	 
+	 ___________________________________________________________________________________________________________________________
+	 requestType	: 
+		1) requesttype.all									11) requesttype.services
+		2) requesttype.general								12) requesttype.protocoladaptors
+		3) requesttype.environment							13) requesttype.deviceadaptors
+		4) requesttype.screeninfo							14) requesttype.applicationvariables
+		5) requesttype.env_variables						15) requesttype.app_datasets
+		6) requesttype.env_cookies							16) requesttype.app_variables
+		7) requesttype.env_httpheader						17) requesttype.app_dataobjects
+		8) requesttype.typedefinition						19) requesttype.applications
+		9) requesttype.modules								20) requesttype.forms
+		10) requesttype.objects
+		
+	 dataobjectID : Set the ID of the DataObject to which the requested information will be reflected according to requestType.
+	 
+********************************************************************************************************************************/
+
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// request applications information of nexacrostudio project
+	var sRtn = nexacrostudio.request(requesttype.applications);	
+	
+	var objJSON = JSON.parse(sRtn);
+	
+	this.fnMakeFramesData(objJSON);
+};
+
+this.fnMakeFramesData = function(objJSON)
+{
+	var arrApps = objJSON.applications;
+	var objApplication;
+	
+	var arrFrames;
+	var objFrame;
+	
+	var arrProperties;
+	var objProperty;
+	
+	var nRow;
+	var arrFrameId;
+	var sId;
+	var sCaption;
+	
+	this.dsFrames.clearData();
+	this.dsFrames.set_enableevent(false);
+	
+	for (var i = 0; i < arrApps.length; i++)		
+	{
+		objApplication = arrApps[i];
+		
+		nRow = this.dsFrames.addRow();		
+		this.dsFrames.setColumn(nRow, "id", objApplication.id);
+		this.dsFrames.setColumn(nRow, "caption", objApplication.id);
+		this.dsFrames.setColumn(nRow, "level", 0);
+		this.dsFrames.setColumn(nRow, "status", 1);
+		
+		arrProperties = objApplication.properties;
+		for (var k = 0; k < arrProperties.length; k++)
+		{
+			objProperty = arrProperties[k];
+			nRow = this.dsFrames.addRow();
+			this.dsFrames.setColumn(nRow, "id", objApplication.id);
+			this.dsFrames.setColumn(nRow, "caption", objProperty.name + " : " + objProperty.value);
+			this.dsFrames.setColumn(nRow, "level", 1);
+		}
+		
+		arrFrames = objApplication.frames;
+		for (var j = 0; j < arrFrames.length; j++)
+		{
+			objFrame = arrFrames[j];
+			arrFrameId = objFrame.id.split(".");			
+			sId = arrFrameId[arrFrameId.length - 1];
+			sCaption = sId + "(" + objFrame.classname + ")";
+			
+			nRow = this.dsFrames.addRow();		
+			this.dsFrames.setColumn(nRow, "id", sId);
+			this.dsFrames.setColumn(nRow, "caption", sCaption);
+			this.dsFrames.setColumn(nRow, "level", arrFrameId.length);
+			this.dsFrames.setColumn(nRow, "status", 1);
+			
+			arrProperties = objFrame.properties;
+			for (var k = 0; k < arrProperties.length; k++)
+			{
+				objProperty = arrProperties[k];
+				nRow = this.dsFrames.addRow();
+				this.dsFrames.setColumn(nRow, "id", sId);
+				this.dsFrames.setColumn(nRow, "caption", objProperty.name + " : " + objProperty.value);
+				this.dsFrames.setColumn(nRow, "level", arrFrameId.length+1);
+			}
+		}
+	}
+	this.dsFrames.set_enableevent(true);
+	
+	if (this.dsFrames.getRowCount() > 0)
+	{
+		this.grdFrames.selectRow(0);
+	}
+}
+
+this.btnExportCSV_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnExportCSV("FramesInformation.csv", this.grdFrames);
+};
+
+this.btnExportExcel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnExportExcel("FramesInformation", this.grdFrames);
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsFrames">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="caption" type="STRING" size="256"/>
+          <Column id="level" type="STRING" size="256"/>
+          <Column id="status" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

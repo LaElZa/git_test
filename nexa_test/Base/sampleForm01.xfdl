@@ -1,0 +1,544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="sampleForm01" width="1090" height="650" titletext="New Form" oninit="work01_oninit">
+    <Layouts>
+      <Layout height="650" mobileorientation="landscape" width="1090">
+        <Static id="Static00" taborder="0" text="This is the biggest title." left="0" top="0" height="34" cssclass="sta_WF_title01" right="10"/>
+        <Static id="Static20" taborder="1" text="· Home &gt; Middle title &gt; navi" top="0" width="263" height="34" right="10" cssclass="sta_WF_navi"/>
+        <Tab id="Tab00" taborder="2" tabindex="0" left="0" top="44" width="530" height="510">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Tabpage1">
+              <Layouts>
+                <Layout>
+                  <Grid id="Grid00" taborder="0" left="10" top="10" right="10" bottom="49" binddataset="ds_Employee" autofittype="col">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="43"/>
+                          <Column size="80"/>
+                          <Column size="158"/>
+                          <Column size="65"/>
+                          <Column size="135"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="24" band="head"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="Check"/>
+                          <Cell col="1" text="name"/>
+                          <Cell col="2" text="phone"/>
+                          <Cell col="3" text="gender"/>
+                          <Cell col="4" text="position"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:Check" displaytype="checkboxcontrol"/>
+                          <Cell col="1" text="bind:name"/>
+                          <Cell col="2" text="bind:phone"/>
+                          <Cell col="3" text="bind:gender"/>
+                          <Cell col="4" text="bind:position"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <Button id="Button00" taborder="1" text="Button00" left="127" width="120" height="30" cssclass="btn_cm_basic01" bottom="13"/>
+                  <Button id="Button01" taborder="2" text="Button01" left="257" width="120" height="30" cssclass="btn_cm_basic02" bottom="13"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="Tabpage2"/>
+          </Tabpages>
+        </Tab>
+        <Button id="Button00" taborder="3" left="540" top="210" width="30" height="60" cssclass="btn_WF_pagingNext" onclick="Button00_onclick"/>
+        <Button id="Button01" taborder="4" left="540" top="290" width="30" height="60" cssclass="btn_WF_pagingPrev"/>
+        <Static id="Static01" taborder="5" text="Label" left="580" top="44" width="110" height="32" cssclass="sta_cm_box01R"/>
+        <Static id="Static08" taborder="6" left="689" top="44" height="32" cssclass="sta_cm_box02L" right="10"/>
+        <Static id="Static02" taborder="7" text="Label" left="580" top="75" width="110" height="32" cssclass="sta_cm_box01R"/>
+        <Static id="Static03" taborder="8" left="689" top="75" height="32" cssclass="sta_cm_box02L" right="10"/>
+        <Static id="Static04" taborder="9" text="Label" left="580" top="106" width="110" height="32" cssclass="sta_cm_box01R"/>
+        <Static id="Static05" taborder="10" left="689" top="106" height="32" cssclass="sta_cm_box02L" right="10"/>
+        <Static id="Static06" taborder="11" text="Label" left="580" top="137" width="110" height="32" cssclass="sta_cm_box01R"/>
+        <Static id="Static07" taborder="12" left="689" top="137" height="32" cssclass="sta_cm_box02L" right="10"/>
+        <Static id="Static09" taborder="13" text="Label" left="580" top="168" width="110" height="93" cssclass="sta_cm_box01R"/>
+        <Static id="Static10" taborder="14" left="689" top="168" height="93" cssclass="sta_cm_box02L" right="10"/>
+        <Static id="Static11" taborder="15" text="Label" left="580" top="260" width="110" height="32" cssclass="sta_cm_box01R"/>
+        <Static id="Static12" taborder="16" left="689" top="260" height="32" cssclass="sta_cm_box02L" right="10"/>
+        <Static id="Static13" taborder="17" text="Label" left="580" top="291" width="110" height="93" cssclass="sta_cm_box01R"/>
+        <Static id="Static14" taborder="18" left="689" top="291" height="93" cssclass="sta_cm_box02L" right="10"/>
+        <Static id="Static15" taborder="19" text="Label" left="580" top="383" width="110" height="32" cssclass="sta_cm_box01R"/>
+        <Static id="Static16" taborder="20" left="689" top="383" height="32" cssclass="sta_cm_box02L" right="10"/>
+        <Static id="Static17" taborder="21" text="Label" left="580" top="414" width="110" height="32" cssclass="sta_cm_box01R"/>
+        <Static id="Static18" taborder="22" left="689" top="414" height="32" cssclass="sta_cm_box02L" right="10"/>
+        <Static id="Static19" taborder="23" text="Label" left="580" top="445" width="110" height="32" cssclass="sta_cm_box01R"/>
+        <Static id="Static21" taborder="24" left="689" top="445" height="32" cssclass="sta_cm_box02L" right="10"/>
+        <Static id="Static22" taborder="25" text="Label" left="580" top="476" width="110" height="78" cssclass="sta_cm_box01R"/>
+        <Static id="Static23" taborder="26" left="689" top="476" height="78" cssclass="sta_cm_box02L" right="10"/>
+        <Edit id="Edit00" taborder="27" left="694" top="48" width="199" height="25"/>
+        <Edit id="Edit01" taborder="28" left="694" top="79" width="199" height="25"/>
+        <Combo id="Combo00" taborder="29" text="010" left="694" top="110" width="70" height="25" value="" index="-1"/>
+        <Edit id="Edit02" taborder="30" left="769" top="110" width="70" height="25"/>
+        <Edit id="Edit03" taborder="31" left="844" top="110" width="70" height="25"/>
+        <Combo id="Combo01" taborder="32" text="010" left="694" top="141" width="70" height="25" value="" index="-1"/>
+        <Edit id="Edit04" taborder="33" left="769" top="141" width="70" height="25"/>
+        <Edit id="Edit05" taborder="34" left="844" top="141" width="70" height="25"/>
+        <MaskEdit id="MaskEdit00" taborder="35" left="694" top="172" width="145" height="25"/>
+        <Button id="Button02" taborder="36" text="Zip code" left="844" top="172" width="70" height="25" cssclass="btn_cm_basic01"/>
+        <Edit id="Edit09" taborder="37" left="694" top="202" width="370" height="25"/>
+        <Edit id="Edit010" taborder="38" left="694" top="230" width="370" height="25"/>
+        <Radio id="Radio00" taborder="39" left="694" top="264" width="199" height="25" innerdataset="ds_Gender" codecolumn="Column0" datacolumn="Column0" direction="vertical"/>
+        <MaskEdit id="MaskEdit04" taborder="40" left="694" top="296" width="145" height="25"/>
+        <Button id="Button03" taborder="41" text="Zip code" left="844" top="296" width="70" height="25" cssclass="btn_cm_basic01"/>
+        <Edit id="Edit11" taborder="42" left="694" top="326" width="370" height="25"/>
+        <Edit id="Edit12" taborder="43" left="694" top="354" width="370" height="25"/>
+        <Combo id="Combo02" taborder="44" text="010" left="694" top="387" width="70" height="25" value="" index="-1"/>
+        <Edit id="Edit06" taborder="45" left="769" top="387" width="70" height="25"/>
+        <Edit id="Edit07" taborder="46" left="844" top="387" width="70" height="25"/>
+        <Edit id="Edit08" taborder="47" left="694" top="418" width="199" height="25"/>
+        <CheckBox id="CheckBox00" taborder="48" text="Save" left="902" top="418" width="149" height="25"/>
+        <Calendar id="Calendar00" taborder="49" left="694" top="449" width="119" height="25"/>
+        <Calendar id="Calendar01" taborder="50" left="830" top="449" width="119" height="25"/>
+        <Static id="Static24" taborder="51" text="~" left="818" top="449" width="9" height="25"/>
+        <TextArea id="TextArea00" taborder="52" left="694" top="481" width="370" height="68"/>
+        <Button id="Button05" taborder="53" left="506" top="44" width="25" height="25" cssclass="btn_WF_delete01" onclick="Button05_onclick"/>
+        <Button id="Button06" taborder="54" left="478" top="44" width="25" height="25" cssclass="btn_WF_add01" onclick="Button06_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_Employee">
+        <ColumnInfo>
+          <Column id="Check" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="age" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="phone1" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="zipcode" type="STRING" size="256"/>
+          <Column id="gender" type="STRING" size="256"/>
+          <Column id="address2" type="STRING" size="256"/>
+          <Column id="zipcode2" type="STRING" size="256"/>
+          <Column id="phone3" type="STRING" size="256"/>
+          <Column id="position" type="STRING" size="256"/>
+          <Column id="enteredate" type="STRING" size="256"/>
+          <Column id="resignationdate" type="STRING" size="256"/>
+          <Column id="etc" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="name">Seo-dongcheon</Col>
+            <Col id="age">66</Col>
+            <Col id="phone">010-1111-1111</Col>
+            <Col id="phone1">02-1111-1111</Col>
+            <Col id="address">Mia-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode">05321</Col>
+            <Col id="gender">male</Col>
+            <Col id="address2">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode2">05312</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Senior consultant</Col>
+            <Col id="enteredate">2003-03-04</Col>
+          </Row>
+          <Row>
+            <Col id="name">Mo-taegang</Col>
+            <Col id="age">51</Col>
+            <Col id="phone">010-2222-2222</Col>
+            <Col id="phone1">02-2222-2222</Col>
+            <Col id="address">Cheongdam-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode">05312</Col>
+            <Col id="gender">male</Col>
+            <Col id="address2">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode2">05485</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Senior consultant</Col>
+            <Col id="enteredate">2003-03-05</Col>
+          </Row>
+          <Row>
+            <Col id="name">Kim-kyungmin</Col>
+            <Col id="age">25</Col>
+            <Col id="phone">010-3333-3333</Col>
+            <Col id="phone1">02-3333-3333</Col>
+            <Col id="address">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode">05485</Col>
+            <Col id="gender">female</Col>
+            <Col id="address2">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode2">05893</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Assistant consultant</Col>
+            <Col id="enteredate">2003-04-05</Col>
+          </Row>
+          <Row>
+            <Col id="name">Ji-soyeon</Col>
+            <Col id="age">48</Col>
+            <Col id="phone">010-4444-4444</Col>
+            <Col id="phone1">02-4444-4444</Col>
+            <Col id="address">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode">05893</Col>
+            <Col id="gender">female</Col>
+            <Col id="address2">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode2">06523</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Assistant consultant</Col>
+            <Col id="enteredate">2005-12-11</Col>
+          </Row>
+          <Row>
+            <Col id="name">Pack-bohun</Col>
+            <Col id="age">60</Col>
+            <Col id="phone">010-5555-5555</Col>
+            <Col id="phone1">02-5555-5555</Col>
+            <Col id="address">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode">06523</Col>
+            <Col id="gender">male</Col>
+            <Col id="address2">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode2">02183</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Assistant consultant</Col>
+            <Col id="enteredate">2005-12-12</Col>
+          </Row>
+          <Row>
+            <Col id="name">Ca-yohan</Col>
+            <Col id="age">42</Col>
+            <Col id="phone">010-6666-6666</Col>
+            <Col id="phone1">02-6666-6666</Col>
+            <Col id="address">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode">02183</Col>
+            <Col id="gender">male</Col>
+            <Col id="address2">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode2">02854</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Assistant consultant</Col>
+            <Col id="enteredate">2007-01-03</Col>
+          </Row>
+          <Row>
+            <Col id="name">Kang-siyoung</Col>
+            <Col id="age">28</Col>
+            <Col id="phone">010-7777-7777</Col>
+            <Col id="phone1">02-7777-7777</Col>
+            <Col id="address">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode">02854</Col>
+            <Col id="gender">female</Col>
+            <Col id="address2">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode2">05985</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Assistant consultant</Col>
+            <Col id="enteredate">2009-05-30</Col>
+          </Row>
+          <Row>
+            <Col id="name">Sun-minjun</Col>
+            <Col id="age">43</Col>
+            <Col id="phone">010-8888-8888</Col>
+            <Col id="phone1">02-8888-8888</Col>
+            <Col id="address">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode">05985</Col>
+            <Col id="gender">male</Col>
+            <Col id="address2">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode2">05327</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Assistant consultant</Col>
+            <Col id="enteredate">2009-11-12</Col>
+          </Row>
+          <Row>
+            <Col id="name">Lee-youjin</Col>
+            <Col id="age">34</Col>
+            <Col id="phone">010-9999-9999</Col>
+            <Col id="phone1">02-9999-9999</Col>
+            <Col id="address">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode">05327</Col>
+            <Col id="gender">male</Col>
+            <Col id="address2">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode2">05123</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Assistant consultant</Col>
+            <Col id="enteredate">2009-12-05</Col>
+          </Row>
+          <Row>
+            <Col id="name">Kang-mirae</Col>
+            <Col id="age">28</Col>
+            <Col id="phone">010-1111-2222</Col>
+            <Col id="phone1">02-1111-2222</Col>
+            <Col id="address">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode">05123</Col>
+            <Col id="gender">female</Col>
+            <Col id="address2">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode2">05952</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Staff consultant</Col>
+            <Col id="enteredate">2010-01-22</Col>
+          </Row>
+          <Row>
+            <Col id="name">Jang-hackju</Col>
+            <Col id="age">30</Col>
+            <Col id="phone">010-3333-4444</Col>
+            <Col id="phone1">02-3333-4444</Col>
+            <Col id="address">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode">05952</Col>
+            <Col id="gender">female</Col>
+            <Col id="address2">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode2">05423</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Senior consultant</Col>
+            <Col id="enteredate">2010-10-01</Col>
+          </Row>
+          <Row>
+            <Col id="name">Gu-junmo</Col>
+            <Col id="age">30</Col>
+            <Col id="phone">010-5555-6666</Col>
+            <Col id="phone1">02-5555-6666</Col>
+            <Col id="address">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode">05423</Col>
+            <Col id="gender">male</Col>
+            <Col id="address2">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode2">04235</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Senior consultant</Col>
+            <Col id="enteredate">2015-01-01</Col>
+          </Row>
+          <Row>
+            <Col id="name">Ma-dongsik</Col>
+            <Col id="age">33</Col>
+            <Col id="phone">010-7777-8888</Col>
+            <Col id="phone1">02-7777-8888</Col>
+            <Col id="address">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode">04235</Col>
+            <Col id="gender">male</Col>
+            <Col id="address2">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode2">05243</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Assistant consultant</Col>
+            <Col id="enteredate">2017-06-30</Col>
+          </Row>
+          <Row>
+            <Col id="name">Pack-taeha</Col>
+            <Col id="age">18</Col>
+            <Col id="phone">010-9999-0000</Col>
+            <Col id="phone1">02-9999-0000</Col>
+            <Col id="address">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode">05243</Col>
+            <Col id="gender">male</Col>
+            <Col id="address2">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode2">05886</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Assistant consultant</Col>
+            <Col id="enteredate">2017-08-20</Col>
+          </Row>
+          <Row>
+            <Col id="name">Lee-jaesang</Col>
+            <Col id="age">37</Col>
+            <Col id="phone">010-0000-1111</Col>
+            <Col id="phone1">02-0000-1111</Col>
+            <Col id="address">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode">05886</Col>
+            <Col id="gender">male</Col>
+            <Col id="address2">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode2">05412</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Staff consultant</Col>
+            <Col id="enteredate">2019-02-01</Col>
+          </Row>
+          <Row>
+            <Col id="name">Ra-dohae</Col>
+            <Col id="age">33</Col>
+            <Col id="phone">010-2222-3333</Col>
+            <Col id="phone1">02-2222-3333</Col>
+            <Col id="address">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode">05932</Col>
+            <Col id="gender">female</Col>
+            <Col id="address2">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode2">05796</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Staff consultant</Col>
+            <Col id="enteredate">2019-09-01</Col>
+          </Row>
+          <Row>
+            <Col id="name">Jang-jeni</Col>
+            <Col id="age">44</Col>
+            <Col id="phone">010-4444-5555</Col>
+            <Col id="phone1">02-4444-5555</Col>
+            <Col id="address">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode">05886</Col>
+            <Col id="gender">female</Col>
+            <Col id="address2">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode2">05412</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">President</Col>
+            <Col id="enteredate">2001-01-01</Col>
+          </Row>
+          <Row>
+            <Col id="name">Kim-jihyo</Col>
+            <Col id="age">58</Col>
+            <Col id="phone">010-6666-7777</Col>
+            <Col id="phone1">02-6666-7777</Col>
+            <Col id="address">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode">05886</Col>
+            <Col id="gender">female</Col>
+            <Col id="address2">Seongnae-dong, Gangdong-gu, Seoul</Col>
+            <Col id="zipcode2">05412</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Chairman</Col>
+            <Col id="enteredate">2001-01-01</Col>
+          </Row>
+          <Row>
+            <Col id="name">Nam-seun</Col>
+            <Col id="age">35</Col>
+            <Col id="phone">010-8888-9999</Col>
+            <Col id="phone1">02-8888-9999</Col>
+            <Col id="address">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode">05886</Col>
+            <Col id="gender">female</Col>
+            <Col id="address2">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode2">05243</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Senior Managing Director</Col>
+            <Col id="enteredate">2001-01-01</Col>
+          </Row>
+          <Row>
+            <Col id="name">Lee-hyunji</Col>
+            <Col id="age">30</Col>
+            <Col id="phone">010-1111-0000</Col>
+            <Col id="phone1">02-1111-0000</Col>
+            <Col id="address">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode">05886</Col>
+            <Col id="gender">female</Col>
+            <Col id="address2">Nonhyeon-dong, Gangnam-gu, Seoul</Col>
+            <Col id="zipcode2">05243</Col>
+            <Col id="phone2">02-1234-5678</Col>
+            <Col id="position">Director</Col>
+            <Col id="enteredate">2001-01-01</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_Gender">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">female</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">male</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1">
+    <![CDATA[this.work01_oninit = function(obj:nexacro.Form,e:nexacro.EventInfo)
+{
+	var strColID = this.ds_Employee.getColID(1);
+	this.Static01.set_text(strColID);
+	
+	strColID = this.ds_Employee.getColID(2);
+	this.Static02.set_text(strColID);
+	
+	strColID = this.ds_Employee.getColID(3);
+	this.Static04.set_text(strColID);
+	
+	strColID = this.ds_Employee.getColID(4);
+	this.Static06.set_text(strColID);
+	
+	strColID = this.ds_Employee.getColID(5);
+	this.Static09.set_text(strColID);
+	
+	strColID = this.ds_Employee.getColID(7);
+	this.Static11.set_text(strColID);
+	
+	strColID = this.ds_Employee.getColID(8);
+	this.Static13.set_text(strColID);
+	
+	strColID = this.ds_Employee.getColID(10);
+	this.Static15.set_text(strColID);
+	
+	strColID = this.ds_Employee.getColID(11);
+	this.Static17.set_text(strColID);
+	
+	//strColID = this.ds_Employee.getColID(12);
+	this.Static19.set_text("employment period");
+	
+	strColID = this.ds_Employee.getColID(14);
+	this.Static22.set_text(strColID);
+};
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var aDSRowidx = this.Tab00.Tabpage1.form.Grid00.getSelectedDatasetRows();
+	var nDatasetRow = aDSRowidx[0];
+	
+	var sName 		= this.ds_Employee.getColumn(nDatasetRow, 1);
+	this.Edit00.set_value(sName);
+	
+	var sAge 		= this.ds_Employee.getColumn(nDatasetRow, 2);
+	this.Edit01.set_value(sAge);
+	
+	var sCellPhone 	= this.ds_Employee.getColumn(nDatasetRow, 3);
+	var sArray = sCellPhone.split('-');
+	this.Combo00.set_text(sArray[0]);
+	this.Edit02.set_value(sArray[1]);
+	this.Edit03.set_value(sArray[2]);
+	
+	var sHomePhone 	= this.ds_Employee.getColumn(nDatasetRow, 4);
+	sArray = sHomePhone.split('-');
+	this.Combo01.set_text(sArray[0]);
+	this.Edit04.set_value(sArray[1]);
+	this.Edit05.set_value(sArray[2]);
+	
+	var sHomeAddress = this.ds_Employee.getColumn(nDatasetRow, 5);
+	var sHomeZipcode = this.ds_Employee.getColumn(nDatasetRow, 6);
+	this.Edit09.set_value(sHomeAddress);
+	this.MaskEdit00.set_value(sHomeZipcode);
+	
+	var sGender 	= this.ds_Employee.getColumn(nDatasetRow, 7);
+	var sGender = (sGender == "male") ? "male" : "female";
+	this.Radio00.set_value(sGender);
+	
+	var sOfficeAddress = this.ds_Employee.getColumn(nDatasetRow, 8);
+	var sOfficeZipcode = this.ds_Employee.getColumn(nDatasetRow, 9);
+	this.Edit11.set_value(sOfficeAddress);
+	this.MaskEdit04.set_value(sOfficeZipcode);
+		 
+	var sOfficePhone = this.ds_Employee.getColumn(nDatasetRow, 10);
+	sArray = sOfficePhone.split('-');
+	this.Combo02.set_value(sArray[0]);
+	this.Edit06.set_value(sArray[1]);
+	this.Edit07.set_value(sArray[2]);
+	
+	var sPosition 	= this.ds_Employee.getColumn(nDatasetRow, 11);
+	this.Edit08.set_value(sPosition);
+	
+	var sStartDate 	= this.ds_Employee.getColumn(nDatasetRow, 12);
+	var sEndDate 	= this.ds_Employee.getColumn(nDatasetRow, 13);
+	if (isNaN(sEndDate))
+	{
+		var date = new Date(); 
+		var year = date.getFullYear(); 
+		var month = new String(date.getMonth()+1); 
+		var day = new String(date.getDate()); 
+
+		if(month.length == 1){ 
+		  month = "0" + month; 
+		} 
+		if(day.length == 1){ 
+		  day = "0" + day; 
+		} 
+		
+		sEndDate = (year + "" + month + "" + day);
+	}
+	this.Calendar00.set_value(sStartDate);
+	this.Calendar01.set_value(sEndDate);
+	
+	var sEtc 		= this.ds_Employee.getColumn(nDatasetRow, 14);
+	this.TextArea00.set_value(sEtc);
+};
+
+// add row
+this.Button06_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.ds_Employee.addRow();
+};
+
+// delete row
+this.Button05_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var aDSRowidx = this.Tab00.Tabpage1.form.Grid00.getSelectedDatasetRows();
+	this.ds_Employee.deleteRow(aDSRowidx[0]);
+};
+]]></Script>
+  </Form>
+</FDL>
